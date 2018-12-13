@@ -1,0 +1,22 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "Todo API built with Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulBriar/node-todo-api.git"
+  },
+  "author": "Paul Briar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PaulBriar/node-todo-api/issues"
+  },
+  "homepage": "https://github.com/PaulBriar/node-todo-api#readme",
+  "dependencies": {
+    "mongodb": "^2.2.5"
+  }
+}
