@@ -2,6 +2,7 @@
 
 let mongoose = require('mongoose');
 
+//Model setup
 let User = mongoose.model('User', {
     email: {
         type: String,
@@ -11,6 +12,7 @@ let User = mongoose.model('User', {
     }
 });
 
+//Creating new user
 // let newUser = new User({
 //     email: 'pbriar@live.com'
 // });

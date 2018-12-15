@@ -19,4 +19,15 @@ let Todo = mongoose.model('Todo', {
     }
 });
 
+//Creating new todo
+// let newTodo = new Todo({
+//     text: 'Go shopping'
+// });
+
+// newTodo.save().then((result) => {
+//     console.log(result);
+// }, (err) => {
+//     console.log(err);
+// });
+
 module.exports = {Todo};
