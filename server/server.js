@@ -8,6 +8,7 @@ let {Todo} = require('./models/todos');
 let {User} = require('./models/user');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -19,7 +20,7 @@ app.post('/todos', (req, res) => {
     todo.save().then((doc) => {
         res.send(doc);
     }, (err) => {
-        res.status(400).send(err); 
+        res.status(400).send(err);
     });
 });
 
@@ -32,7 +33,7 @@ app.get("/todos", (req, res) => {
 });
 
 app.get("/todos/:id", (req, res) => {
-    let id = req.params.id;        
+    let id = req.params.id;
 
     if(!ObjectID.isValid(id)) {
         return res.status(404).send();
@@ -48,6 +49,6 @@ app.get("/todos/:id", (req, res) => {
     });
 });
 
-app.listen(3000, () => console.log('Started on port 3000'));
+app.listen(port, () => console.log(`Started on port ${port}`));
 
 module.exports = {app};
