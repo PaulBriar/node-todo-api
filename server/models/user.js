@@ -1,6 +1,6 @@
 'use strict';
-
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const validator = require('validator');
 
 //Model setup
 let User = mongoose.model('User', {
@@ -9,7 +9,27 @@ let User = mongoose.model('User', {
         required: true,
         trim: true,
         minlength: 1,
-    }
+        unique: true,
+        validate: {
+            validator: validator.isEmail,
+            message: `{value} is not a valid email`
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 6,
+    },
+    tokens: [{
+        access: {
+            type: String,
+            required: true,
+        },
+        token: {
+            type: String,
+            required: true,
+        }
+    }]
 });
 
 //Creating new user
