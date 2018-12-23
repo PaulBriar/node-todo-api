@@ -16,6 +16,15 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
+app.get("/todos", (req, res) => {
+    Todo.find().then((todos) => {
+        res.send({todos});
+    }, (err) => {
+        res.status(400).send(err);
+    });
+});
+
+
 app.post('/todos', (req, res) => {
     let todo = new Todo({
         text: req.body.text
@@ -28,14 +37,7 @@ app.post('/todos', (req, res) => {
     });
 });
 
-app.get("/todos", (req, res) => {
-    Todo.find().then((todos) => {
-        res.send({todos});
-    }, (err) => {
-        res.status(400).send(err);
-    });
-});
-
+//Get Todo by id
 app.get("/todos/:id", (req, res) => {
     let id = req.params.id;
 
@@ -53,21 +55,7 @@ app.get("/todos/:id", (req, res) => {
     });
 });
 
-app.delete("/todos/:id", (req, res) => {
-    let id = req.params.id;
-
-    if(!ObjectID.isValid(id)) {
-        return res.status(404).send();
-    };
-
-    Todo.findByIdAndDelete(id).then((todo) => {
-        if(!todo) {
-            return res.status(404).send();
-        }
-        return res.status(200).send({todo});
-    }).catch( err => {return res.status(404).send(err)});
-});
-
+//Update Todo by id
 app.patch("/todos/:id", (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['text', 'completed']);
@@ -93,12 +81,23 @@ app.patch("/todos/:id", (req, res) => {
     })
 });
 
-// app.get("/users", (req, res) => {
-//     let body = _.pick(req.body, ['email', 'password']);
+//Delete Todo by id
+app.delete("/todos/:id", (req, res) => {
+    let id = req.params.id;
 
-//     User.findById
-// });
-//POSt /users
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send();
+    };
+
+    Todo.findByIdAndDelete(id).then((todo) => {
+        if(!todo) {
+            return res.status(404).send();
+        }
+        return res.status(200).send({todo});
+    }).catch( err => {return res.status(404).send(err)});
+});
+
+//Create new user
 app.post('/users', (req, res) => {
     let body = _.pick(req.body, ['email', 'password']);
     let user = new User(body);

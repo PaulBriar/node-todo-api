@@ -1,3 +1,4 @@
+'use strict';
 let {User} = require('../models/user');
 
 let authenticate = (req, res, next) => {
