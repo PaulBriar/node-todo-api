@@ -33,14 +33,14 @@ let UserSchema = new mongoose.Schema({
         }
     }]
 });
-
+//Choosing what the user gets back
 UserSchema.methods.toJSON = function () {
     let user = this;
     let userObject = user.toObject();
 
     return _.pick(userObject, ['_id', 'email']);
 };
-
+//JSON web token generation
 UserSchema.methods.generateAuthToken = function () {
     let user = this;
     let access = 'auth';
