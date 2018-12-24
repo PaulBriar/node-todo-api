@@ -69,6 +69,7 @@ UserSchema.statics.findByToken = function (token) {
         'tokens.access': 'auth',
     });
 };
+
 //Middleware
 UserSchema.pre('save', function(next) {
     let user = this;
