@@ -16,4 +16,5 @@
       "/Volumes/Macintosh HD/Users/wesbos/.vscodestyles.css"
     ],
     "editor.renderWhitespace": "all",
+    "git.ignoreLimitWarning": true,
   }
